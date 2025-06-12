@@ -5,415 +5,537 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Professional portfolio of Mohamed, Fullstack Developer Undergraduate">
   <title>Mohamed Minhaj | Fullstack Developer Portfolio</title>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#32056b',
-            primaryHover: '#6967eb',
-            lightBg: '#f0f8ff',
-            darkBg: '#212529',
-          },
-          fontFamily: {
-            ubuntu: ['Ubuntu', 'sans-serif'],
-            poppins: ['Poppins', 'sans-serif'],
-          },
-        }
-      }
-    }
-  </script>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
-<body class="font-poppins text-gray-800 overflow-x-hidden">
   
+  <style>
+    :root {
+      --primary: #32056b;
+      --primary-hover: #6967eb;
+      --light-bg: #f0f8ff;
+      --dark-bg: #212529;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      overflow-x: hidden;
+    }
+    
+    .ubuntu-font {
+      font-family: 'Ubuntu', sans-serif;
+    }
+    
+    .text-primary {
+      color: var(--primary) !important;
+    }
+    
+    .bg-primary {
+      background-color: var(--primary) !important;
+    }
+    
+    .bg-light-custom {
+      background-color: var(--light-bg);
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      border-color: var(--primary);
+    }
+    
+    .btn-primary:hover {
+      background-color: white;
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+    
+    .btn-outline-primary {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline-primary:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .section-title {
+      position: relative;
+      padding-bottom: 15px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      height: 3px;
+      width: 80px;
+      background: var(--primary);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .nav-link {
+      position: relative;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--primary);
+      transition: width 0.3s;
+    }
+    
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    .navbar-scrolled {
+      background-color: var(--primary) !important;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+    
+    .navbar-scrolled .navbar-brand,
+    .navbar-scrolled .nav-link,
+    .navbar-scrolled .social-icon {
+      color: white !important;
+    }
+    
+    .social-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s;
+    }
+    
+    .social-icon:hover {
+      transform: translateY(-3px);
+    }
+    
+    .skill-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 100%;
+    }
+    
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .project-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .contact-icon {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(50, 5, 107, 0.1);
+      border-radius: 50%;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+    
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      z-index: 1000;
+      transition: transform 0.3s;
+    }
+    
+    .scroll-top-btn:hover {
+      transform: translateY(-5px);
+    }
+    
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
   <!-- Navigation -->
-  <nav id="navbar" class="fixed w-full py-6 bg-white bg-opacity-95 shadow-md transition-all duration-300 z-50">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-      <div class="logo">
-        <a href="#" class="font-ubuntu font-medium text-4xl text-primary transition-colors duration-300">MNM Solutions</a>
-      </div>
-      <ul class="menu hidden md:flex relative">
-        <li class="mx-4"><a href="#home" class="text-lg font-medium relative py-2 hover:text-primary transition-colors duration-300 after:absolute after:w-0 after:h-0.5 after:bg-primary after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full">Home</a></li>
-        <li class="mx-4"><a href="#about" class="text-lg font-medium relative py-2 hover:text-primary transition-colors duration-300 after:absolute after:w-0 after:h-0.5 after:bg-primary after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full">About</a></li>
-        <li class="mx-4"><a href="#skills" class="text-lg font-medium relative py-2 hover:text-primary transition-colors duration-300 after:absolute after:w-0 after:h-0.5 after:bg-primary after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full">Skills</a></li>
-        <li class="mx-4"><a href="#projects" class="text-lg font-medium relative py-2 hover:text-primary transition-colors duration-300 after:absolute after:w-0 after:h-0.5 after:bg-primary after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full">Projects</a></li>
-        <li class="mx-4"><a href="#contact" class="text-lg font-medium relative py-2 hover:text-primary transition-colors duration-300 after:absolute after:w-0 after:h-0.5 after:bg-primary after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full">Contact</a></li>
-        <li class="cancel-btn absolute top-8 right-8 text-white text-2xl cursor-pointer hidden"><i class="fas fa-times"></i></li>
-      </ul>
-      <div class="media-icons hidden md:flex">
-        <a href="https://www.facebook.com/share/16FsLaaY8o/" aria-label="Facebook" class="mx-2 text-lg text-primary hover:transform hover:-translate-y-1 transition-transform duration-300"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://wa.me/+940770453688" aria-label="Whatsapp" class="mx-2 text-lg text-primary hover:transform hover:-translate-y-1 transition-transform duration-300"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.linkedin.com/in/mohamed-minhaj-7b6150301" aria-label="LinkedIn" class="mx-2 text-lg text-primary hover:transform hover:-translate-y-1 transition-transform duration-300"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-      <div class="menu-btn md:hidden text-primary text-2xl cursor-pointer">
-        <i class="fas fa-bars"></i>
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-light fixed-top py-3 shadow-sm">
+    <div class="container">
+      <a class="navbar-brand ubuntu-font fs-3 fw-bold text-primary" href="#">MNM Solutions</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item mx-2"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <div class="d-flex ms-lg-4">
+          <a href="https://www.facebook.com/share/16FsLaaY8o/" aria-label="Facebook" class="mx-2 social-icon text-primary"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://wa.me/+940770453688" aria-label="Whatsapp" class="mx-2 social-icon text-primary"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.linkedin.com/in/mohamed-minhaj-7b6150301" aria-label="LinkedIn" class="mx-2 social-icon text-primary"><i class="fab fa-linkedin-in"></i></a>
+        </div>
       </div>
     </div>
   </nav>
 
   <!-- Home Section -->
-  <section id="home" class="min-h-screen bg-lightBg bg-fixed bg-center bg-cover flex items-center">
-    <div class="container mx-auto px-4 h-full flex flex-col justify-center py-24">
-      <div class="text-xl md:text-2xl mb-2">Hello, I'm</div>
-      <div class="text-5xl md:text-7xl font-semibold mb-2 leading-tight">Mohamed Minhaj</div>
-      <div class="text-3xl md:text-4xl my-4 text-primary font-ubuntu">Fullstack Web Developer </div>
-      <div class="text-xl md:text-2xl my-4 max-w-lg">Building complete web solutions from frontend to backend</div>
-      <div class="mt-8">
-        <a href="https://wa.me/+94770453688"> <button class="bg-primary hover:bg-white text-white hover:text-primary border-2 border-transparent hover:border-primary px-6 py-3 rounded-md text-lg font-medium transition duration-300 transform hover:-translate-y-1">Hire Me</button>
+  <section id="home" class="min-vh-100 d-flex align-items-center bg-light-custom">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <p class="fs-5 mb-1">Hello, I'm</p>
+          <h1 class="display-4 fw-bold mb-3">Mohamed Minhaj</h1>
+          <h2 class="text-primary ubuntu-font fs-2 mb-4">Fullstack Web Developer</h2>
+          <p class="fs-5 mb-4">Building complete web solutions from frontend to backend</p>
+          <a href="https://wa.me/+94770453688" class="btn btn-primary btn-lg px-5 py-3 fw-medium">Hire Me</a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-20">
-    <div class="container mx-auto px-4">
-      <div class="flex justify-center mb-3">
-        <h2 class="text-3xl font-semibold relative pb-2 after:content-[''] after:absolute after:h-0.5 after:w-full after:bg-primary after:left-0 after:bottom-0 before:content-[''] before:absolute before:h-0.5 before:w-3/4 before:bg-primary before:left-1/2 before:-translate-x-1/2 before:-bottom-2">About Me</h2>
-      </div>
-      <div class="flex flex-col md:flex-row items-center justify-between gap-16">
-        <div class="w-full md:w-3/5">
-          <img src="image.jpg" alt="Mohamed Minhaj - Fullstack Developer" loading="lazy" class="w-full max-w-md mx-auto rounded-xl shadow-lg" />
+  <section id="about" class="py-5">
+    <div class="container py-5">
+      <h2 class="section-title">About Me</h2>
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5 animate-on-scroll">
+          <img src="image.png" alt="Mohamed Minhaj - Fullstack Developer" loading="lazy" class="img-fluid rounded shadow">
         </div>
-        <div class="w-full md:w-3/5">
-          
-          <p class="text-base mb-2">I'm an undergraduate student passionate about fullstack web development, currently pursuing my degree in Computer Science. I specialize in building complete web applications using modern technologies across the entire stack.</p>
-          <p class="text-base mb-2">My academic background combined with hands-on project experience allows me to approach problems with both theoretical knowledge and practical solutions. I'm particularly interested in creating efficient, scalable systems with clean code architecture.</p>
-        
-          <div class="mt-8">
-            <a href="CV.pdf">
-              <button class="bg-primary hover:bg-white text-white hover:text-primary border-2 border-transparent hover:border-primary px-6 py-3 rounded-md text-lg font-medium transition duration-300 transform hover:-translate-y-1 flex items-center gap-2">
-                <i class="fas fa-download"></i> Download CV
-              </button>
-            </a>
-          </div>
+        <div class="col-lg-7 animate-on-scroll">
+          <p class="mb-3">I'm an undergraduate student passionate about fullstack web development, currently pursuing my degree in Computer Science. I specialize in building complete web applications using modern technologies across the entire stack.</p>
+          <p class="mb-4">My academic background combined with hands-on project experience allows me to approach problems with both theoretical knowledge and practical solutions. I'm particularly interested in creating efficient, scalable systems with clean code architecture.</p>
+          <a href="CV.pdf" class="btn btn-primary btn-lg px-4 py-2 fw-medium">
+            <i class="fas fa-download me-2"></i> Download CV
+          </a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Skills Section -->
-  <section id="skills" class="py-20 bg-lightBg">
-    <div class="container mx-auto px-4">
-      <div class="flex justify-center mb-16">
-        <h2 class="text-3xl font-semibold relative pb-2 after:content-[''] after:absolute after:h-0.5 after:w-full after:bg-primary after:left-0 after:bottom-0 before:content-[''] before:absolute before:h-0.5 before:w-3/4 before:bg-primary before:left-1/2 before:-translate-x-1/2 before:-bottom-2">My Skills</h2>
-      </div>
-      <div class="flex flex-col md:flex-row items-center justify-between gap-12">
-        <div class="w-full md:w-1/2">
-          <div class="text-2xl font-medium mb-4">Fullstack Expertise</div>
-          <p class="text-base mb-8">I've developed skills across the entire web development stack through coursework, personal projects, and freelance work. I'm constantly expanding my knowledge to include emerging technologies and best practices.</p>
-          <div class="flex items-center ml-4">
-            <div class="text-6xl md:text-8xl font-semibold leading-none">2+</div>
-            <div class="text-lg md:text-xl font-medium ml-2">Projects<br>Completed</div>
+  <section id="skills" class="py-5 bg-light-custom">
+    <div class="container py-5">
+      <h2 class="section-title">My Skills</h2>
+      <div class="row g-5">
+        <div class="col-lg-6 animate-on-scroll">
+          <h3 class="h2 fw-medium mb-4">Fullstack Expertise</h3>
+          <p class="mb-5">I've developed skills across the entire web development stack through coursework, personal projects, and freelance work. I'm constantly expanding my knowledge to include emerging technologies and best practices.</p>
+          <div class="d-flex align-items-center">
+            <div class="display-3 fw-bold me-3">2+</div>
+            <div class="fs-5 fw-medium">Projects<br>Completed</div>
           </div>
         </div>
-        <div class="w-full md:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div class="p-6 bg-white rounded-lg shadow-md transition duration-300 transform hover:-translate-y-1 hover:shadow-lg">
-            <div class="text-xl text-primary font-medium mb-2">Frontend</div>
-            <div class="text-base mb-2"> HTML5, CSS3, JavaScript, ReactJS</div>
-            <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-              <div class="bg-primary h-2.5 rounded-full" style="width: 100%"></div>
+        <div class="col-lg-6">
+          <div class="row g-4">
+            <div class="col-md-6 animate-on-scroll">
+              <div class="skill-card card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <h4 class="card-title text-primary fw-medium fs-4 mb-3">Frontend</h4>
+                  <p class="card-text mb-3">HTML5, CSS3, JavaScript, ReactJS</p>
+                  <div class="progress mb-1" style="height: 8px;">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 animate-on-scroll">
+              <div class="skill-card card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <h4 class="card-title text-primary fw-medium fs-4 mb-3">Backend</h4>
+                  <p class="card-text mb-3">PHP, Node JS</p>
+                  <div class="progress mb-1" style="height: 8px;">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 65%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 animate-on-scroll">
+              <div class="skill-card card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <h4 class="card-title text-primary fw-medium fs-4 mb-3">Databases</h4>
+                  <p class="card-text mb-3">MySQL, MongoDB</p>
+                  <div class="progress mb-1" style="height: 8px;">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 70%"></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="p-6 bg-white rounded-lg shadow-md transition duration-300 transform hover:-translate-y-1 hover:shadow-lg">
-            <div class="text-xl text-primary font-medium mb-2">Backend</div>
-            <div class="text-base mb-2">PHP,Node JS</div>
-            <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-              <div class="bg-primary h-2.5 rounded-full" style="width: 65%"></div>
-            </div>
-          </div>
-          <div class="p-6 bg-white rounded-lg shadow-md transition duration-300 transform hover:-translate-y-1 hover:shadow-lg">
-            <div class="text-xl text-primary font-medium mb-2">Databases</div>
-            <div class="text-base mb-2">MySQL,MongoDB</div>
-            <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-              <div class="bg-primary h-2.5 rounded-full" style="width: 70%"></div>
-            </div>
-          </div>
-          
         </div>
       </div>
     </div>
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="py-20">
-    <div class="container mx-auto px-4">
-      <div class="flex justify-center mb-16">
-        <h2 class="text-3xl font-semibold relative pb-2 after:content-[''] after:absolute after:h-0.5 after:w-full after:bg-primary after:left-0 after:bottom-0 before:content-[''] before:absolute before:h-0.5 before:w-3/4 before:bg-primary before:left-1/2 before:-translate-x-1/2 before:-bottom-2">My Projects</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300 transform hover:-translate-y-2 hover:shadow-xl">
-          <div class="h-48 bg-primary flex items-center justify-center">
-            <i class="fas fa-project-diagram text-white text-5xl"></i>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Portfolio-Website</h3>
-            <p class="text-gray-600 mb-4">A Responsive Fullstack Web Developer portfolio website </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">HTML</span>
-              <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">CSS(tailwind)</span>
-              <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">JavaScript</span>
+  <section id="projects" class="py-5">
+    <div class="container py-5">
+      <h2 class="section-title">My Projects</h2>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-6 col-lg-4 animate-on-scroll">
+          <div class="project-card card h-100 border-0 overflow-hidden shadow">
+            <div class="card-img-top bg-primary d-flex align-items-center justify-content-center" style="height: 200px;">
+              <i class="fas fa-project-diagram text-white display-4"></i>
+            </div>
+            <div class="card-body p-4">
+              <h3 class="card-title fw-semibold fs-5 mb-2">Portfolio-Website</h3>
+              <p class="card-text text-muted mb-3">A Responsive Fullstack Web Developer portfolio website</p>
+              <div class="d-flex flex-wrap gap-2">
+                <span class="badge bg-primary bg-opacity-10 text-primary py-2 px-3">HTML</span>
+                <span class="badge bg-primary bg-opacity-10 text-primary py-2 px-3">CSS(tailwind)</span>
+                <span class="badge bg-primary bg-opacity-10 text-primary py-2 px-3">JavaScript</span>
+              </div>
             </div>
           </div>
         </div>
-        
-        
       </div>
-      <div class="text-center mt-12">
-        <button class="bg-primary hover:bg-white text-white hover:text-primary border-2 border-transparent hover:border-primary px-6 py-3 rounded-md text-lg font-medium transition duration-300 transform hover:-translate-y-1">
+      <div class="text-center mt-5 animate-on-scroll">
+        <a href="https://github.com/minhajmnm" class="btn btn-outline-primary btn-lg px-5 py-3 fw-medium">
           View All Projects
-        </button><a href="https://github.com/minhajmnm"></a>
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-20 bg-lightBg">
-    <div class="container mx-auto px-4">
-      <div class="flex justify-center mb-16">
-        <h2 class="text-3xl font-semibold relative pb-2 after:content-[''] after:absolute after:h-0.5 after:w-full after:bg-primary after:left-0 after:bottom-0 before:content-[''] before:absolute before:h-0.5 before:w-3/4 before:bg-primary before:left-1/2 before:-translate-x-1/2 before:-bottom-2">Get In Touch</h2>
+  <section id="contact" class="py-5 bg-light-custom">
+    <div class="container py-5">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8 text-center">
+          <p class="fs-5">Looking for a passionate fullstack Web developer for your project? I'm available for internships, freelance work, and collaborations. Let's discuss how I can contribute to your team!</p>
+        </div>
       </div>
-      <div class="max-w-2xl mx-auto text-center mb-10">
-        <p class="text-lg">Looking for a passionate fullstack Web developer for your project? I'm available for internships, freelance work, and collaborations. Let's discuss how I can contribute to your team!</p>
-      </div>
-      <div class="flex flex-col md:flex-row gap-8 max-w-4xl mx-auto">
-        <div class="w-full md:w-1/2 bg-white p-8 rounded-xl shadow-md">
-          <h3 class="text-xl font-semibold mb-6 text-center">Contact Information</h3>
-          <div class="space-y-4">
-            <div class="flex items-center gap-4">
-              <div class="w-10 h-10 bg-primary bg-opacity-10 text-primary rounded-full flex items-center justify-center">
-                <i class="fas fa-envelope"></i>
+      <div class="row g-5 justify-content-center">
+        <div class="col-lg-5 animate-on-scroll">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4 p-md-5">
+              <h3 class="card-title text-center fw-semibold fs-4 mb-4">Contact Information</h3>
+              <div class="mb-4">
+                <div class="contact-info-item">
+                  <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div>
+                    <div class="text-muted small">Email</div>
+                    <div class="fw-medium">minhajmnm862@gmail.com</div>
+                  </div>
+                </div>
+                <div class="contact-info-item">
+                  <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                  </div>
+                  <div>
+                    <div class="text-muted small">Phone</div>
+                    <div class="fw-medium">+94 770453688</div>
+                  </div>
+                </div>
+                <div class="contact-info-item">
+                  <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div>
+                    <div class="text-muted small">Location</div>
+                    <div class="fw-medium">Gelioya,Kandy,Sri Lanka</div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <div class="text-sm text-gray-500">Email</div>
-                <div class="font-medium">minhajmnm862@gmail.com</div>
+              <div class="d-flex justify-content-center gap-3 mt-4">
+                <a href="https://www.linkedin.com/in/mohamed-minhaj-7b6150301/" class="social-icon d-flex align-items-center justify-content-center rounded-circle text-primary" style="width: 45px; height: 45px; background: rgba(50, 5, 107, 0.1);">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/minhajmnm" class="social-icon d-flex align-items-center justify-content-center rounded-circle text-primary" style="width: 45px; height: 45px; background: rgba(50, 5, 107, 0.1);">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://wa.me/+94770453688" class="social-icon d-flex align-items-center justify-content-center rounded-circle text-primary" style="width: 45px; height: 45px; background: rgba(50, 5, 107, 0.1);">
+                  <i class="fab fa-whatsapp"></i>
+                </a>
               </div>
             </div>
-            <div class="flex items-center gap-4">
-              <div class="w-10 h-10 bg-primary bg-opacity-10 text-primary rounded-full flex items-center justify-center">
-                <i class="fas fa-phone"></i>
-              </div>
-              <div>
-                <div class="text-sm text-gray-500">Phone</div>
-                <div class="font-medium">+94 770453688</div>
-              </div>
-            </div>
-            <div class="flex items-center gap-4">
-              <div class="w-10 h-10 bg-primary bg-opacity-10 text-primary rounded-full flex items-center justify-center">
-                <i class="fas fa-map-marker-alt"></i>
-              </div>
-              <div>
-                <div class="text-sm text-gray-500">Location</div>
-                <div class="font-medium">Gelioya,Kandy,Sri Lanka</div>
-              </div>
-            </div>
-          </div>
-          <div class="flex justify-center gap-4 mt-8">
-            <a href="https://www.linkedin.com/in/mohamed-minhaj-7b6150301/" class="w-10 h-10 bg-primary bg-opacity-10 text-primary rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors duration-300">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://github.com/minhajmnm" class="w-10 h-10 bg-primary bg-opacity-10 text-primary rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors duration-300">
-              <i class="fab fa-github"></i>
-            </a>
-            <a href="https://wa.me/+94770453688" class="w-10 h-10 bg-primary bg-opacity-10 text-primary rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors duration-300">
-              <i class="fab fa-whatsapp"></i>
-            </a>
           </div>
         </div>
-        <div class="w-full md:w-1/2 bg-white p-8 rounded-xl shadow-md">
-          <h3 class="text-xl font-semibold mb-6 text-center">Send Me a Message</h3>
-          <form class="space-y-4">
-            <div>
-              <input type="text" placeholder="Your Name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+        <div class="col-lg-7 animate-on-scroll">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4 p-md-5">
+              <h3 class="card-title text-center fw-semibold fs-4 mb-4">Send Me a Message</h3>
+              <form>
+                <div class="mb-4">
+                  <input type="text" class="form-control form-control-lg" placeholder="Your Name">
+                </div>
+                <div class="mb-4">
+                  <input type="email" class="form-control form-control-lg" placeholder="Your Email">
+                </div>
+                <div class="mb-4">
+                  <input type="text" class="form-control form-control-lg" placeholder="Subject">
+                </div>
+                <div class="mb-4">
+                  <textarea class="form-control form-control-lg" rows="4" placeholder="Your Message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg w-100 py-3 fw-medium">
+                  Send Message
+                </button>
+              </form>
             </div>
-            <div>
-              <input type="email" placeholder="Your Email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-            </div>
-            <div>
-              <input type="text" placeholder="Subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-            </div>
-            <div>
-              <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
-            </div>
-            <button type="submit" class="w-full bg-primary hover:bg-primaryHover text-white px-6 py-3 rounded-md text-lg font-medium transition duration-300">
-              Send Message
-            </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="py-6 bg-primary">
-    <div class="container mx-auto px-4 text-center">
-      <div class="text-white text-lg">
-        © <span id="year"></span> <a href="https://minhajmnm.github.io/Portpolio-Website/" class="font-medium hover:underline">MNM MINHAJ</a> | Fullstack Developer Undergraduate | All rights reserved.
+  <footer class="py-4 bg-primary">
+    <div class="container">
+      <div class="text-center text-white">
+        © <span id="year"></span> <a href="https://minhajmnm.github.io/Portpolio-Website/" class="text-white fw-medium text-decoration-none">MNM MINHAJ</a> | Fullstack Developer  | All rights reserved.
       </div>
     </div>
   </footer>
 
   <!-- Scroll Button -->
-  <div class="scroll-button hidden fixed bottom-6 right-6 z-50 animate-fadeIn">
-    <a href="#home" aria-label="Scroll to top" class="bg-primary hover:bg-primaryHover text-white p-4 rounded-full shadow-md transition duration-300 transform hover:-translate-y-1 flex items-center justify-center">
-      <i class="fas fa-arrow-up"></i>
-    </a>
-  </div>
+  <a href="#home" class="scroll-top-btn btn btn-primary shadow animate-on-scroll" id="scrollTopBtn" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
 
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  
   <!-- JavaScript -->
   <script>
     // Set current year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
     
-    // Mobile menu functionality
-    const menuBtn = document.querySelector(".menu-btn");
-    const cancelBtn = document.querySelector(".cancel-btn");
-    const navbar = document.querySelector("#navbar");
-    const menu = document.querySelector(".menu");
-    const scrollBtn = document.querySelector(".scroll-button");
-    
-    menuBtn.addEventListener("click", () => {
-      menu.classList.add("active", "flex", "flex-col", "fixed", "top-0", "right-0", "w-full", "max-w-sm", "h-screen", "bg-darkBg", "z-50", "items-center", "justify-center");
-      menu.classList.remove("hidden");
-      menuBtn.style.display = "none";
-      cancelBtn.style.display = "block";
-      document.body.style.overflow = "hidden";
-    });
-    
-    cancelBtn.addEventListener("click", () => {
-      menu.classList.remove("active", "flex", "flex-col", "fixed");
-      menu.classList.add("hidden", "md:flex");
-      menuBtn.style.display = "block";
-      cancelBtn.style.display = "none";
-      document.body.style.overflow = "auto";
-    });
-    
-    document.querySelectorAll(".menu a").forEach(link => {
-      link.addEventListener("click", () => {
-        if (window.innerWidth < 768) {
-          menu.classList.remove("active", "flex", "flex-col", "fixed");
-          menu.classList.add("hidden", "md:flex");
-          menuBtn.style.display = "block";
-          cancelBtn.style.display = "none";
-          document.body.style.overflow = "auto";
-        }
-      });
-    });
-    
     // Scroll functionality
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 20) {
-        navbar.classList.add("bg-primary", "py-4");
-        navbar.classList.remove("bg-white", "bg-opacity-95", "py-6");
-        
-        // Change text color to white when navbar is sticky
-        document.querySelectorAll(".menu a").forEach(item => {
-          item.classList.add("text-white", "hover:text-white");
-          item.classList.remove("hover:text-primary");
-        });
-        
-        document.querySelector(".logo a").classList.add("text-white");
-        document.querySelector(".logo a").classList.remove("text-primary");
-        
-        document.querySelectorAll(".media-icons a").forEach(icon => {
-          icon.classList.add("text-white");
-          icon.classList.remove("text-primary");
-        });
-        
-        if (menuBtn.style.display !== "none") {
-          menuBtn.classList.add("text-white");
-          menuBtn.classList.remove("text-primary");
-        }
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      const scrollTopBtn = document.getElementById('scrollTopBtn');
+      
+      // Navbar background change on scroll
+      if (window.scrollY > 50) {
+        navbar.classList.add('navbar-scrolled');
       } else {
-        navbar.classList.remove("bg-primary", "py-4");
-        navbar.classList.add("bg-white", "bg-opacity-95", "py-6");
-        
-        // Change text color back when navbar is not sticky
-        document.querySelectorAll(".menu a").forEach(item => {
-          item.classList.remove("text-white", "hover:text-white");
-          item.classList.add("hover:text-primary");
-        });
-        
-        document.querySelector(".logo a").classList.remove("text-white");
-        document.querySelector(".logo a").classList.add("text-primary");
-        
-        document.querySelectorAll(".media-icons a").forEach(icon => {
-          icon.classList.remove("text-white");
-          icon.classList.add("text-primary");
-        });
-        
-        if (menuBtn.style.display !== "none") {
-          menuBtn.classList.remove("text-white");
-          menuBtn.classList.add("text-primary");
-        }
+        navbar.classList.remove('navbar-scrolled');
       }
       
       // Show/hide scroll button
-      if (window.scrollY > 200) {
-        scrollBtn.classList.remove("hidden");
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('visible');
       } else {
-        scrollBtn.classList.add("hidden");
+        scrollTopBtn.classList.remove('visible');
       }
     });
     
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener("click", function(e) {
+      anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        const targetId = this.getAttribute("href");
-        if (targetId === "#") return;
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
         
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
           window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: "smooth"
+            top: targetElement.offsetTop - 70,
+            behavior: 'smooth'
           });
         }
       });
     });
     
-    // Animate elements on scroll
-    const animateOnScroll = () => {
-      const elements = document.querySelectorAll("#skills .grid > div, #projects .grid > div, #about > div > div");
+    // Add active class to nav links on scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    window.addEventListener('scroll', () => {
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (scrollY >= (sectionTop - 100)) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').substring(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+    
+    // Animation on scroll
+    const animateElements = () => {
+      const elements = document.querySelectorAll('.animate-on-scroll');
       
       elements.forEach(element => {
         const elementPosition = element.getBoundingClientRect().top;
         const screenPosition = window.innerHeight / 1.2;
         
         if (elementPosition < screenPosition) {
-          element.classList.add("opacity-100", "translate-y-0");
-          element.classList.remove("opacity-0", "translate-y-4");
+          element.classList.add('visible');
         }
       });
     };
     
-    // Set initial state for animation
-    document.querySelectorAll("#skills .grid > div, #projects .grid > div, #about > div > div").forEach(el => {
-      el.classList.add("opacity-0", "translate-y-4", "transition-all", "duration-700");
-    });
+    // Initialize animations
+    window.addEventListener('load', animateElements);
+    window.addEventListener('scroll', animateElements);
     
-    // Add animation on scroll and page load
-    window.addEventListener("scroll", animateOnScroll);
-    window.addEventListener("load", animateOnScroll);
-
-    // Add custom styles for animation
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      .animate-fadeIn {
-        animation: fadeIn 0.3s ease;
-      }
-    `;
-    document.head.appendChild(style);
+    // Close mobile menu when clicking a nav link
+    const navLinksMobile = document.querySelectorAll('.nav-link');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    
+    navLinksMobile.forEach(link => {
+      link.addEventListener('click', () => {
+        if (navbarCollapse.classList.contains('show')) {
+          const toggler = document.querySelector('.navbar-toggler');
+          toggler.click();
+        }
+      });
+    });
   </script>
 </body>
 </html>
